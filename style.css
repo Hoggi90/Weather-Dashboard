@@ -1,17 +1,15 @@
 
 .row {
-    border: 1px solid red;
-    margin-left: 0 !important;
+    margin-left: 30px !important;
     margin-right: 0 !important;
 }
 
 .col-lg-3 {
-    border: 5px solid green;
  
 }
 
 .pb-3 {
-    border: 0.1px solid blue;
+    margin-top: 10px !important;
   
 }
 .weather-search{
@@ -24,9 +22,39 @@
 }
 .card {
     font-size: 16px !important;
-    margin: 15px;
+    background-color: #2d3e50 !important;
+    color: white !important;
+    border-radius: 0 !important;
+    padding: 30px;
+    margin-right: 25px;
 }
 
+.weather-header {
+    background-image: linear-gradient(to right, rgba(52,98,187,255), rgba(33,11,78,255));
+}
+
+.icon {
+    width: 50%;
+    margin-left: -15px;
+    
+}
+
+.icon2 {
+    width: 15%;
+}
+
+.h6 {
+    margin-bottom: 20px;
+    margin-left: -10px;
+}
+
+.h4 {
+    margin-bottom: 20px
+}
+
+.date {
+    margin-left: -10px;
+}
 
 #today {
     width: 100% !important;
@@ -35,17 +63,21 @@
 
 #search-button {
 
-    border: 1px solid red;
     width: 100% !important;
     margin-top: 20px;
     padding-left: 125px;
     padding-right: 125px;
+    background-color: #5098e6;
+    color: white;
+    border-radius: 5px;
 
 }
 
 #today {
 
-    border: 1px solid red;
+    border: 1px solid rgb(116, 115, 118);
+    margin-left: 0 !important;
+    padding: 20px !important;
 }
 
 .btn-primary {
