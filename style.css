@@ -24,7 +24,9 @@
 }
 .card {
     font-size: 16px !important;
+    margin: 15px;
 }
+
 
 #today {
     width: 100% !important;
