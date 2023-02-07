@@ -4,9 +4,7 @@
     margin-right: 0 !important;
 }
 
-.col-lg-3 {
- 
-}
+
 
 .pb-3 {
     margin-top: 10px !important;
@@ -14,10 +12,9 @@
 }
 .weather-search{
     border: 1px solid grey;
-    width: 100%;
     border-radius: 5px;
     padding: 10px;
-    display: block;
+
 
 }
 .card {
@@ -46,24 +43,24 @@
 .h6 {
     margin-bottom: 20px;
     margin-left: -10px;
+    font-weight: lighter !important;
 }
 
 .h4 {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    font-weight: lighter !important;
+
 }
 
 .date {
     margin-left: -10px;
 }
 
-#today {
-    width: 100% !important;
-    padding: 0 0 0 0 !important;
-}
+
 
 #search-button {
 
-    width: 100% !important;
+  
     margin-top: 20px;
     padding-left: 125px;
     padding-right: 125px;
@@ -71,7 +68,17 @@
     color: white;
     border-radius: 5px;
     font-weight: lighter;
+    float: left;
+}
 
+#clear-results {
+
+    margin-top: 15px !important;
+    background-color: #f57b5a;
+    color: white;
+    border-radius: 5px;
+    font-weight: lighter;
+    float: left;
 }
 
 #today {
@@ -81,13 +88,11 @@
     padding: 20px !important;
 }
 
-#history {
+#clear {
     border-top: 1px solid grey;
 }
 
-.btn-primary {
-    width: 100% !important;
-}
+
 
 .list-group-item {
     margin-top: 15px;
@@ -95,11 +100,6 @@
     font-weight: lighter;
     padding: 7px !important;
 }
-
-li {
-    list-style-type: none;
-}
-
 
 
 
