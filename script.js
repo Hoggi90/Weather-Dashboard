@@ -1,10 +1,19 @@
 $(document).ready(function() {
     cityName = "London";
     weather();
-  });
+    var history = localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [];
+    for (var i = 0; i < history.length; i++) {
+        var btn = $("<button>");
+        btn.addClass("list-group-item");
+        btn.text(history[i]);
+        $("#history").append(btn);
+    }
+});
+
 
 $("#search-button").click(function (e) {
     e.preventDefault();
+    
     $("#forecast").empty();
     $("#today").empty();
     cityName = $("#search-input").val();
@@ -14,7 +23,29 @@ $("#search-button").click(function (e) {
     btn.text(cityName);
 
     $("#history").append(btn);
+    
+    var history = localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [];
+    history.push(cityName);
+    localStorage.setItem("history", JSON.stringify(history));
+    $("#search-form").trigger("reset")
 });
+
+$("#history").on("click", "button", function (e) {
+    e.preventDefault();
+    $("#forecast").empty();
+    $("#today").empty();
+    $("#search-input").val($(this).text());
+    cityName = $(this).text();
+    weather();
+});
+
+$("#clear-results").on("click", function (e) {
+    e.preventDefault();
+    $("#history").empty();
+    localStorage.removeItem("history"); 
+    });
+
+
 
 function weather() {
 var APIkey = "80d2291911ec73545d4250e961efc4ce"
