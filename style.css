@@ -70,6 +70,7 @@
     background-color: #5098e6;
     color: white;
     border-radius: 5px;
+    font-weight: lighter;
 
 }
 
@@ -80,11 +81,20 @@
     padding: 20px !important;
 }
 
+#history {
+    border-top: 1px solid grey;
+}
+
 .btn-primary {
     width: 100% !important;
 }
 
-
+.list-group-item {
+    margin-top: 15px;
+    background-color: #aeaeae !important;
+    font-weight: lighter;
+    padding: 7px !important;
+}
 
 li {
     list-style-type: none;

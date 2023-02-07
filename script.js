@@ -1,11 +1,22 @@
-var cityName = "London";
+$(document).ready(function() {
+    cityName = "London";
+    weather();
+  });
 
-$("#search-button").click(function(){
+$("#search-button").click(function (e) {
+    e.preventDefault();
+    $("#forecast").empty();
+    $("#today").empty();
     cityName = $("#search-input").val();
+    weather();
+    var btn = $("<button>");
+    btn.addClass("list-group-item");
+    btn.text(cityName);
+
+    $("#history").append(btn);
 });
 
-$(function weather(){
-
+function weather() {
 var APIkey = "80d2291911ec73545d4250e961efc4ce"
 
 var queryURLFiveDay = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + APIkey;
@@ -52,7 +63,7 @@ console.log(forecastData);
     .append($("<h6>").addClass("h4").text("Humidity: " + humidity + "%"))
     .appendTo(todayEl);
     $("<h2>").addClass("col-lg-12").text("5 Day Forecast")
-        .appendTo(forecastEl)
+    .appendTo(forecastEl)
 
     for (var i = 6; i <= 38; i += 8) {
         var date = moment.unix(forecastData.list[i].dt).format("DD/MM/YYYY");
@@ -68,9 +79,9 @@ console.log(forecastData);
     .append($("<h6>").addClass("h6").text("Temp: " + temp + "°C"))
     .append($("<h6>").addClass("h6").text("Wind: " + wind + "KPH"))
     .append($("<h6>").addClass("h6").text("Humidity: " + humidity + "%"))
-     .appendTo(forecastEl);
+    .appendTo(forecastEl);
     }
           
 });
 });
-});
+};
