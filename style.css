@@ -4,8 +4,6 @@
     margin-right: 0 !important;
 }
 
-
-
 .pb-3 {
     margin-top: 10px !important;
   
@@ -56,8 +54,6 @@
     margin-left: -10px;
 }
 
-
-
 #search-button {
 
   
@@ -88,10 +84,11 @@
     padding: 20px !important;
 }
 
+
+
 #clear {
     border-top: 1px solid grey;
 }
-
 
 
 .list-group-item {
