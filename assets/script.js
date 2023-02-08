@@ -54,7 +54,7 @@ $("#clear-results").on("click", function (e) {
 function weather() {
 var APIkey = "80d2291911ec73545d4250e961efc4ce"
 
-var queryURLFiveDay = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + APIkey;
+var queryURLFiveDay = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + APIkey;
 $.ajax({
     url: queryURLFiveDay,
     method: "GET",
@@ -66,7 +66,7 @@ var cityGeoName = response[0].name;
 var cityGeoLon = response[0].lon;
 var cityGeoLat = response[0].lat;
 // They were then passed through this API
-let queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + cityGeoLat + "&lon=" + cityGeoLon + "&appid=" + APIkey
+let queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityGeoLat + "&lon=" + cityGeoLon + "&appid=" + APIkey
 
 $.ajax({
 
