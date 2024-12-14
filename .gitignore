@@ -18,6 +18,12 @@ terraform.tfstate.backup
 *.tfvars
 *.tfvars.json
 
+# Ignore Terraform state and backup files
+*.tfstate
+*.tfstate.*
+*.backup
+
+
 # Ignore Docker-specific files
 docker-compose.override.yml
 .dockerignore
@@ -50,3 +56,5 @@ dist/
 # Ignore editor/IDE settings
 .vscode/
 .idea/
+
+backend/env/
