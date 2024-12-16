@@ -1,9 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 import os
 import requests
-from dotenv import load_dotenv 
-
-load_dotenv() 
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='/')
 
@@ -27,8 +24,8 @@ def get_weather():
         geo_response = requests.get(geo_url)
         geo_response.raise_for_status()
         geo_data = geo_response.json()
-
-        if not geo_data:
+        
+        if not geo_data: 
             return jsonify({"error": "City not found"}), 404
 
         lat, lon = geo_data[0]['lat'], geo_data[0]['lon']
