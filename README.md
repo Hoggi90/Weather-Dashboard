@@ -78,9 +78,15 @@ terraform apply
 
 1. Build and push the Docker image to AWS ECR:
 
-aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 861276124001.dkr.ecr.eu-west-2.amazonaws.com
-docker build -t 861276124001.dkr.ecr.eu-west-2.amazonaws.com/weather-backend-repo:latest .
-docker push 861276124001.dkr.ecr.eu-west-2.amazonaws.com/weather-backend-repo:latest
+# Authenticate Docker to your Amazon ECR registry
+aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
+
+# Build your Docker image
+docker build -t <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest .
+
+# Push the Docker image to your ECR repository
+docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
+
 
 2. Apply the Kubernetes configuration:
 
@@ -105,7 +111,7 @@ Visit the live app to view the deployed application.
 
 ## Repository Structure
 
-Weather-Dashboard/
+```Weather-Dashboard/
 ├── backend/                # Flask backend application
 │   ├── app.py              # Main backend script
 │   ├── requirements.txt    # Backend dependencies
@@ -120,7 +126,7 @@ Weather-Dashboard/
 │   └── outputs.tf          # Terraform outputs
 ├── Dockerfile              # Docker configuration
 ├── .gitignore              # Files and directories to ignore in Git
-├── README.md               # Project documentation
+├── README.md               # Project documentation```
 
 ### Contributing
 
