@@ -3,7 +3,7 @@ name: Deploy to EKS
 on:
   push:
     branches:
-      - main
+      - main # Run the pipeline on pushes to the main branch
 
 env:
   ECR_REPOSITORY: weather-backend-repo
@@ -16,9 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the Code
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # Step 2: Configure AWS Credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -26,18 +28,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.REGION }}
 
+      # Step 3: Login to AWS ECR
       - name: Login to AWS ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      # Step 4: Build and Push Docker Image to ECR
       - name: Build and Push Docker Image
         run: |
-          IMAGE_TAG="${{ github.sha }}"
-          IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG"
+          IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest"
           docker build -t "$IMAGE_URI" .
           docker push "$IMAGE_URI"
-          echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
-
+          
+      # Step 5: Configure kubectl for EKS
       - name: Configure kubectl
         uses: azure/setup-kubectl@v3
         with:
@@ -47,7 +50,8 @@ jobs:
         run: |
           aws eks update-kubeconfig --region ${{ env.REGION }} --name ${{ env.CLUSTER_NAME }}
 
+      # Step 6: Update Kubernetes Deployment
       - name: Deploy to Kubernetes
         run: |
-          kubectl set image deployment/weather-backend weather-backend=${{ env.IMAGE_URI }}
-          kubectl rollout status deployment/weather-backend --timeout=60s
+          kubectl set image deployment/weather-backend weather-backend=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+          kubectl rollout status deployment/weather-backend
