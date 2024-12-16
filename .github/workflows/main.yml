@@ -39,7 +39,7 @@ jobs:
           docker build -t "$IMAGE_URI" .
           docker push "$IMAGE_URI"
       
-          
+        
       # Step 5: Configure kubectl for EKS
       - name: Configure kubectl
         uses: azure/setup-kubectl@v3
