@@ -34,10 +34,12 @@ jobs:
 
       # Step 4: Configure kubectl for EKS
       - name: Configure kubectl
-        uses: aws-actions/eks-kubectl@v1
+        uses: azure/setup-kubectl@v3
         with:
-          cluster-name: ${{ env.CLUSTER_NAME }}
-          region: ${{ env.REGION }}
+          version: 'latest'
+      - name: Update kubeconfig for EKS
+        run: |
+         aws eks update-kubeconfig --region ${{ env.REGION }} --name ${{ env.CLUSTER_NAME }}
 
       # Step 5: Update Kubernetes Deployment
       - name: Deploy to Kubernetes
