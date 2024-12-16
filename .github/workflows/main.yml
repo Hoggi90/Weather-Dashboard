@@ -1,1 +1,46 @@
+name: Deploy to EKS
 
+on:
+  push:
+    branches:
+      - main 
+
+env:
+  ECR_REPOSITORY: weather-backend-repo
+  REGION: eu-west-2
+  CLUSTER_NAME: weather-cluster
+
+jobs:
+  build-and-deploy:
+    name: Build, Push, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the Code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Login to AWS ECR
+      - name: Login to AWS ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Step 3: Build and Push Docker Image to ECR
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest"
+          docker build -t "$IMAGE_URI" .
+          docker push "$IMAGE_URI"
+
+      # Step 4: Configure kubectl for EKS
+      - name: Configure kubectl
+        uses: aws-actions/eks-kubectl@v1
+        with:
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          region: ${{ env.REGION }}
+
+      # Step 5: Update Kubernetes Deployment
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/weather-backend weather-backend=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+          kubectl rollout status deployment/weather-backend
