@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "eu-west-2" # Replace with your preferred region
+  region = "eu-west-2"
 }
 
 # VPC
@@ -14,7 +14,7 @@ resource "aws_vpc" "weather_vpc" {
 
 resource "aws_subnet" "public_subnet_a" {
   vpc_id                  = aws_vpc.weather_vpc.id
-  cidr_block              = "10.0.11.0/24" # Changed to avoid conflict
+  cidr_block              = "10.0.11.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "eu-west-2a"
   tags = {
@@ -24,7 +24,7 @@ resource "aws_subnet" "public_subnet_a" {
 
 resource "aws_subnet" "public_subnet_b" {
   vpc_id                  = aws_vpc.weather_vpc.id
-  cidr_block              = "10.0.12.0/24" # Changed to avoid conflict
+  cidr_block              = "10.0.12.0/24" 
   map_public_ip_on_launch = true
   availability_zone       = "eu-west-2b"
   tags = {
@@ -73,7 +73,7 @@ resource "aws_security_group" "weather_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allow SSH (restrict in production)
+    cidr_blocks = ["0.0.0.0/0"] 
   }
 
   ingress {
@@ -111,23 +111,23 @@ resource "aws_ecr_repository" "weather_repo" {
   }
 }
 
-# Generate an RSA key pair
+
 resource "tls_private_key" "key" {
   algorithm = "RSA"
   rsa_bits  = 2048
 }
 
-# Create an AWS key pair using the generated public key
+
 resource "aws_key_pair" "weather_key" {
   key_name   = "weather-key"
   public_key = tls_private_key.key.public_key_openssh
 }
 
-# Output the private key so you can download it
+
 resource "local_file" "key_file" {
   filename = "${path.module}/weather-key.pem"
   content  = tls_private_key.key.private_key_pem
-  file_permission = "0600" # Secure permissions
+  file_permission = "0600" 
 }
 
 module "eks" {
@@ -148,8 +148,8 @@ module "eks" {
       min_size     = 1
       max_size     = 2
       desired_size = 1
-      instance_type = "t2.micro" # Ensure it's free-tier eligible
-      key_name     = "weather-key" # Matches the key pair created earlier
+      instance_type = "t2.micro" 
+      key_name     = "weather-key" 
     }
   }
 }

@@ -3,7 +3,7 @@ name: Deploy to EKS
 on:
   push:
     branches:
-      - main # Run the pipeline on pushes to the main branch
+      - main 
 
 env:
   ECR_REPOSITORY: weather-backend-repo
