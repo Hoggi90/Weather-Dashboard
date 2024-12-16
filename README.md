@@ -40,21 +40,21 @@ cd Weather-Dashboard
 
 ### 2. Backend Configuration
 
-1. Obtain an API key from the OpenWeather API.
+- Obtain an API key from the OpenWeather API.
 
-2. Create a .env file in the backend directory with the following content:
+- Create a ```.env``` file in the backend directory with the following content:
 
 OPENWEATHER_API_KEY=your_api_key_here
 
 ### 3. Build and Test Locally
 
-1. Build the Docker image:
+- **Build the Docker image:**
 
-docker build -t weather-backend .
+```docker build -t weather-backend .```
 
-2. Run the app locally:
+- **Run the app locally:**
 
-docker run -p 5000:5000 weather-backend
+```docker run -p 5000:5000 weather-backend```
 
 Access the app in your browser at http://localhost:5000.
 
