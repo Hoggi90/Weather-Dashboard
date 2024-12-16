@@ -5,7 +5,7 @@ metadata:
   labels:
     app: weather-backend
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: weather-backend
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: weather-backend
-        image: <image-uri>
+        image: 861276124001.dkr.ecr.eu-west-2.amazonaws.com/weather-backend-repo:latest
         imagePullPolicy: Always
         resources:
           requests:
