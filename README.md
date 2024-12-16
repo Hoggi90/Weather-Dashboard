@@ -111,7 +111,8 @@ Visit the live app to view the deployed application.
 
 ## Repository Structure
 
-```Weather-Dashboard/
+```
+Weather-Dashboard/
 ├── backend/                # Flask backend application
 │   ├── app.py              # Main backend script
 │   ├── requirements.txt    # Backend dependencies
@@ -122,11 +123,11 @@ Visit the live app to view the deployed application.
 │   ├── service.yaml
 ├── terraform/              # Terraform configuration files
 │   ├── main.tf             # Terraform main configuration
-│   ├── variables.tf        # Terraform variables
-│   └── outputs.tf          # Terraform outputs
 ├── Dockerfile              # Docker configuration
 ├── .gitignore              # Files and directories to ignore in Git
-├── README.md               # Project documentation```
+├── README.md               # Project documentation
+
+```
 
 ### Contributing
 
