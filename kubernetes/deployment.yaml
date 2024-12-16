@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: weather-backend
-        image: 861276124001.dkr.ecr.eu-west-2.amazonaws.com/weather-backend-repo:latest
+        image: <image-uri>
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "256Mi"
