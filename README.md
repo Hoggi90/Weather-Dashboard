@@ -64,11 +64,11 @@ Access the app in your browser at http://localhost:5000.
 
 1. Navigate to the terraform directory:
 
-cd terraform
+```cd terraform```
 
 2. Initialize Terraform:
 
-terraform init
+```terraform init```
 
 3. Apply the configuration:
 
