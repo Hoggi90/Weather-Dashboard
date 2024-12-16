@@ -60,7 +60,7 @@ Access the app in your browser at http://localhost:5000.
 
 ### 4. Deploy to AWS
 
-# Infrastructure Setup with Terraform
+## Infrastructure Setup with Terraform
 
 1. Navigate to the terraform directory:
 
@@ -76,26 +76,28 @@ terraform apply
 
 # Deploy with Kubernetes
 
-1. Build and push the Docker image to AWS ECR:
+- Build and push the Docker image to AWS ECR:
 
-# Authenticate Docker to your Amazon ECR registry
-aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
+## Authenticate Docker to your Amazon ECR registry
 
-# Build your Docker image
-docker build -t <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest .
+```aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com```
 
-# Push the Docker image to your ECR repository
-docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
+## Build your Docker image
 
+```docker build -t <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest .```
 
-2. Apply the Kubernetes configuration:
+## Push the Docker image to your ECR repository
 
-kubectl apply -f kubernetes/deployment.yaml
-kubectl apply -f kubernetes/service.yaml
+```docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest```
 
-3. Monitor the deployment:
+- Apply the Kubernetes configuration:
 
-kubectl rollout status deployment/weather-backend
+```kubectl apply -f kubernetes/deployment.yaml```
+```kubectl apply -f kubernetes/service.yaml```
+
+### Monitor the deployment:
+
+```kubectl rollout status deployment/weather-backend````
 
 ### 5. CI/CD Pipeline
 
