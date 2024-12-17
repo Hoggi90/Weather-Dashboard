@@ -141,6 +141,11 @@ Weather-Dashboard/
 │   ├── requirements.txt    # Backend dependencies
 │   └── .env                # API key (ignored in version control)
 ├── frontend/               # Frontend assets (HTML, CSS, JS)
+│   ├── assets/
+│   │     ├── images/
+│   │     ├── style.html
+│   │     └── script.css
+│   ├── service.yaml
 ├── kubernetes/             # Kubernetes deployment and service YAML files
 │   ├── deployment.yaml
 │   ├── service.yaml
