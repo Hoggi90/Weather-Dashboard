@@ -121,9 +121,9 @@ Push the Docker image to your ECR repository:
 
 3. Security Group & Load Balancer:
 
-       - Allow HTTP (80) and HTTPS (443) in EKS security groups.
+    - Allow HTTP (80) and HTTPS (443) in EKS security groups.
 
-       - Add listeners to the Load Balancer for HTTP and HTTPS (use ACM certificate for HTTPS).
+    - Add listeners to the Load Balancer for HTTP and HTTPS (use ACM certificate for HTTPS).
 
 **Route 53 Setup:**
 
