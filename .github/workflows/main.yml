@@ -57,3 +57,8 @@ jobs:
         run: |
           kubectl set image deployment/weather-backend weather-backend=$IMAGE_URI
           kubectl rollout status deployment/weather-backend --timeout=60s
+
+      - name: Restart Pods
+        run: |
+          kubectl rollout restart deployment/weather-backend
+          kubectl rollout status deployment/weather-backend --timeout=60s
