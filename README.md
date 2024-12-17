@@ -36,6 +36,7 @@ You can access the live version of the app at:
 ## 1. Clone the Repository
 
 git clone https://github.com/YourUsername/Weather-Dashboard.git
+
 cd Weather-Dashboard 
 
 ## 2. Backend Configuration
@@ -112,7 +113,7 @@ Push the Docker image to your ECR repository:
 
 ## 7. 🚀 Deploy with Custom Domain
 
-### Domain & Certificate:
+**Domain & Certificate:**
 
 1. Buy a domain in Route 53.
 
@@ -124,7 +125,7 @@ Push the Docker image to your ECR repository:
 
 - Add listeners to the Load Balancer for HTTP and HTTPS (use ACM certificate for HTTPS).
 
-### Route 53 Setup:
+**Route 53 Setup:**
 
 - Create an Alias Record pointing your domain to the Load Balancer DNS Name.
 
