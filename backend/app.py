@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory
 import os
 import requests
 from dotenv import load_dotenv
@@ -10,12 +10,6 @@ app = Flask(__name__, static_folder='../frontend', static_url_path='/')
 @app.route('/debug')
 def debug():
     return "Flask is running!"
-
-@app.before_request
-def before_request():
-    if not request.is_secure:  # If the connection is not secure (HTTP)
-        url = request.url.replace("http://", "https://")  # Change HTTP to HTTPS
-        return redirect(url, code=301)  # Permanent redirect
     
 # Route to serve the index.html file
 @app.route('/')
