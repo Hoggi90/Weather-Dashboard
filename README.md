@@ -98,7 +98,7 @@ Push the Docker image to your ECR repository:
 
 **3. Monitor the deployment:**
 
-```kubectl rollout status deployment/weather-backend```
+- ```kubectl rollout status deployment/weather-backend```
 
 ## 6. CI/CD Pipeline
 
@@ -142,9 +142,9 @@ Weather-Dashboard/
 │   └── .env                # API key (ignored in version control)
 ├── frontend/               # Frontend assets (HTML, CSS, JS)
 │   ├── assets/
-│   │     ├── images/
-│   │     ├── style.html
-│   │     └── script.css
+│   │   ├── images/
+│   │   ├── style.html
+│   │   └── script.css
 │   ├── service.yaml
 ├── kubernetes/             # Kubernetes deployment and service YAML files
 │   ├── deployment.yaml
@@ -164,3 +164,4 @@ No contributions accepted at the moment.
 ### License
 
 This project is licensed under the MIT License.
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://shields.io)
