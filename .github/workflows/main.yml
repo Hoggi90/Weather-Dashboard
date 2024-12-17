@@ -58,7 +58,22 @@ jobs:
           kubectl set image deployment/weather-backend weather-backend=$IMAGE_URI
           kubectl rollout status deployment/weather-backend --timeout=60s
 
+      # Step 7: Restart Pods
       - name: Restart Pods
         run: |
           kubectl rollout restart deployment/weather-backend
           kubectl rollout status deployment/weather-backend --timeout=60s
+
+      # Step 8: Delete Untagged Images from ECR
+      - name: Delete Untagged Images from ECR
+        run: |
+          # List all untagged images
+          UNTAGGED_IMAGES=$(aws ecr list-images --repository-name ${{ env.ECR_REPOSITORY }} --query 'imageIds[?imageTag==`null`]' --output json)
+
+          # Delete the untagged images if they exist
+          if [ "$UNTAGGED_IMAGES" != "[]" ]; then
+            echo "Deleting untagged images..."
+            aws ecr batch-delete-image --repository-name ${{ env.ECR_REPOSITORY }} --image-ids "$UNTAGGED_IMAGES"
+          else
+            echo "No untagged images found."
+          fi
