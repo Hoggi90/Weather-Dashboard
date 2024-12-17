@@ -26,19 +26,19 @@ You can access the live version of the app at:
 
 ## Setup Instructions
 
-### Prerequisites
+## Prerequisites:
 
 - Docker installed locally
 - AWS CLI configured with credentials
 - Terraform installed
 - Kubernetes CLI (`kubectl`) installed and configured
 
-### 1. Clone the Repository
+## 1. Clone the Repository
 
 git clone https://github.com/YourUsername/Weather-Dashboard.git
 cd Weather-Dashboard 
 
-### 2. Backend Configuration
+## 2. Backend Configuration
 
 - Obtain an API key from the OpenWeather API.
 
@@ -46,7 +46,7 @@ cd Weather-Dashboard
 
 OPENWEATHER_API_KEY=your_api_key_here
 
-### 3. Build and Test Locally
+## 3. Build and Test Locally
 
 - **Build the Docker image:**
 
@@ -58,9 +58,9 @@ OPENWEATHER_API_KEY=your_api_key_here
 
 Access the app in your browser at http://localhost:5000.
 
-### 4. Deploy to AWS
+## 4. Deploy to AWS
 
-## Infrastructure Setup with Terraform
+### Infrastructure Setup with Terraform
 
 1. Navigate to the terraform directory:
 
@@ -74,29 +74,29 @@ Access the app in your browser at http://localhost:5000.
 
 ```terraform apply```
 
-# Deploy with Kubernetes
+## Deploy with Kubernetes
 
-- Build and push the Docker image to AWS ECR:
+1. Build and push the Docker image to AWS ECR:
 
-## Authenticate Docker to your Amazon ECR registry
+- **Authenticate Docker to your Amazon ECR registry**
 
 ```aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com```
 
-## Build your Docker image
+- **Build your Docker image**
 
 ```docker build -t <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest .```
 
-## Push the Docker image to your ECR repository
+- **Push the Docker image to your ECR repository**
 
 ```docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest```
 
-- Apply the Kubernetes configuration:
+2. Apply the Kubernetes configuration:
 
 ```kubectl apply -f kubernetes/deployment.yaml```
 
 ```kubectl apply -f kubernetes/service.yaml```
 
-### Monitor the deployment:
+3. Monitor the deployment:
 
 ```kubectl rollout status deployment/weather-backend```
 
@@ -107,6 +107,8 @@ This project uses GitHub Actions for CI/CD. Any changes pushed to the main branc
 1. Build and push the Docker image to AWS ECR.
 
 2. Deploy the updated image to the Kubernetes cluster.
+
+3. Delete the old image from AWS ECR repo to save space.
 
 ### 6. Access the App
 
